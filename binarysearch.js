@@ -1,3 +1,5 @@
+// O(log n) - Logarithmic
+
 function binarySearch(value, list) {
     let first = 0;
     let last = list.length - 1;
