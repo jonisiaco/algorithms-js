@@ -1,56 +1,66 @@
-const tree = {
-    valor: 1,
-    izq: {
-        valor: 2,
-        izq: {
-            valor: 4,
-            izq: {
-                valor: 7,
-                izq: null,
-                der: null
-            },
-            der: null
-        },
-        der: null
-    },
-    der: {
-        valor: 3,
-        izq: null,
-        der: {
-            valor: 5,
-            der: {
-                valor: 8,
-                izq: null,
-                der: null
-            },
-            izq: null
-        }
-    }
-};
+class TreeNode {
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+}
 
-// return the sum of all nodes whose leaves are at the deepest level
+const root = new TreeNode(1);
+root.left = new TreeNode(2);
+root.right = new TreeNode(3);
+root.left.left = new TreeNode(4);
+root.right.right = new TreeNode(5);
+root.left.left.left = new TreeNode(7);
+root.right.right.right = new TreeNode(8);
+
+// Invalid BST (node 6 is misplaced)
+const rootInvalid = new TreeNode(5);
+rootInvalid.left = new TreeNode(3);
+rootInvalid.right = new TreeNode(7);
+rootInvalid.left.left = new TreeNode(2);
+rootInvalid.left.right = new TreeNode(6);  // <-- This breaks BST rules
+rootInvalid.right.left = new TreeNode(4);
+rootInvalid.right.right = new TreeNode(8);
+
+
+// Return the sum of all nodes whose leaves are at the deepest level
 function deepestLeavesSum(root) {
-    let maxNivel = 0;
-    let suma = 0;
+    let maxLevel = 0;
+    let sum = 0;
 
-    function dfs(nodo, nivel) {
-        if (!nodo) return;
+    function dfs(node, level) {
+        if (!node) return;
 
-        if (!nodo.izq && !nodo.der) {
-            if (nivel > maxNivel) {
-                maxNivel = nivel;
-                suma = nodo.valor;
-            } else if (nivel === maxNivel) {
-                suma += nodo.valor;
+        if (!node.left && !node.right) {
+            if (level > maxLevel) {
+                maxLevel = level;
+                sum = node.val;
+            } else if (level === maxLevel) {
+                sum += node.val;
             }
         }
 
-        dfs(nodo.izq, nivel + 1);
-        dfs(nodo.der, nivel + 1);
+        dfs(node.left, level + 1);
+        dfs(node.right, level + 1);
     }
 
     dfs(root, 0);
-    return suma;
+    return sum;
 }
+console.log(deepestLeavesSum(root));
 
-console.log(deepestLeavesSum(tree));
+
+// return true if it's a valid bts
+function isValidBinarySearchTree(node, min = -Infinity, max = Infinity) {
+    if (!node) return true;
+
+    if (node.val <= min || node.val >= max) {
+        return false;
+    }
+
+    return isValidBinarySearchTree(node.left, min, node.val) &&
+           isValidBinarySearchTree(node.right, node.val, max);
+}
+console.log('is it valid?', isValidBinarySearchTree(rootInvalid));
+
