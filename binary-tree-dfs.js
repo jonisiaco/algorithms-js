@@ -1,3 +1,7 @@
+/*
+  Depth-First Search (DFS)
+*/
+
 class TreeNode {
   constructor(val) {
     this.val = val;
@@ -24,7 +28,10 @@ rootInvalid.right.left = new TreeNode(4);
 rootInvalid.right.right = new TreeNode(8);
 
 
-// Return the sum of all nodes whose leaves are at the deepest level
+// Problem Solved: Finding and summing the values of the deepest leaf nodes in a binary tree.
+// Traversal Strategy: DFS traverses the tree by going as deep as possible along each branch before
+// Time Complexity:	O(n)
+// Space (stack);	O(h), where h = tree height (O(n) worst, O(log n) best)
 function deepestLeavesSum(root) {
     let maxLevel = 0;
     let sum = 0;
@@ -50,8 +57,10 @@ function deepestLeavesSum(root) {
 }
 console.log(deepestLeavesSum(root));
 
-
-// return true if it's a valid bts
+// Approach: Recursive (Depth-First Search)
+// Technique: Divide and conquer + boundary checking (min/max constraints)
+// Time Complexity: O(n), where n is the number of nodes (each node is visited once).
+// Space Complexity: O(h)
 function isValidBinarySearchTree(node, min = -Infinity, max = Infinity) {
     if (!node) return true;
 
