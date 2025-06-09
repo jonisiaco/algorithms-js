@@ -1,0 +1,12 @@
+# macOS system file
+.DS_Store
+
+# Common lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+composer.lock
+Gemfile.lock
+Pipfile.lock
+Cargo.lock
+poetry.lock
