@@ -1,4 +1,4 @@
-const json = require('./url-shortening.json');
+const json = require('./json/url-shortening.json');
 
 function minify(json, entry) {
     json.forEach(data => {
