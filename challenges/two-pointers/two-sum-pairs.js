@@ -1,21 +1,4 @@
 
-function isPairSum(nums, target) {
-    nums.sort((a, b) => a - b); // Required for two-pointer
-    let left = 0;
-    let right = nums.length - 1;
-
-    while (left < right) {
-        let sum = nums[left] + nums[right];
-        if (sum === target) return true;
-        if (sum < target) left++;
-        else right--;
-    }
-    return false;
-}
-const arr = [10, 2, 8, 7];
-const expected = 9;
-console.log('isPairSum: ', isPairSum(arr, expected)); // true
-
 
 function twoSum(numbers, target) {
     const nums = numbers.map((n, idx) => [n,idx]);
@@ -53,7 +36,7 @@ console.log("Result: ", result);
 
 function hasPairWithSum(arr, target) {
     let left = 0, right = arr.length - 1;
-    arr.sort((a, b) => a - b); // Important for two pointers
+    arr.sort((a, b) => a - b); // Required for two-pointer
     while (left < right) {
       let sum = arr[left] + arr[right];
       if (sum === target) return true;
