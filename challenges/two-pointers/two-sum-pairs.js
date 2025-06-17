@@ -1,13 +1,21 @@
+
 function isPairSum(nums, target) {
-    for (let i = 0; i < nums.length; i++) {
-        for (let j = i + 1; j < nums.length; j++) {
-            if (nums[i] + nums[j] === target) {
-                return true;
-            }
-        }
+    nums.sort((a, b) => a - b); // Required for two-pointer
+    let left = 0;
+    let right = nums.length - 1;
+
+    while (left < right) {
+        let sum = nums[left] + nums[right];
+        if (sum === target) return true;
+        if (sum < target) left++;
+        else right--;
     }
     return false;
 }
+const arr = [10, 2, 8, 7];
+const expected = 9;
+console.log('isPairSum: ', isPairSum(arr, expected)); // true
+
 
 function twoSum(numbers, target) {
     const nums = numbers.map((n, idx) => [n,idx]);
