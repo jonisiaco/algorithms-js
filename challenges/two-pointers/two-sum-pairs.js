@@ -3,7 +3,7 @@
 function twoSum(numbers, target) {
     const nums = numbers.map((n, idx) => [n,idx]);
     nums.sort((a,b) => a[0] - b[0]);
-    console.log(nums)
+
     let left = 0;
     let right = nums.length - 1;
 
@@ -23,11 +23,12 @@ function twoSum(numbers, target) {
 
     return [];
 }
-const nums = [7, 2, 5, 4, 1, 9, 8];
+const nums = [7, 2, 5, 4, 1, 9];
 const target = 10;
 
 const result = twoSum(nums, target);
-console.log("Result: ", result);
+console.log("sum of indexes:", result);
+console.log("[7, 2, 5, 4, 1, 9] = 1 + 9 = 10");
 
 
 // The function hasPairWithSum(arr, target) checks whether there exists a pair of numbers
@@ -46,5 +47,5 @@ function hasPairWithSum(arr, target) {
     return false;
   }
   
-  console.log(hasPairWithSum([1, 2, 3, 9], 8)); // returns false (no pair adds to 8)
-  console.log(hasPairWithSum([1, 2, 4, 4], 8)); // returns true (4 + 4 = 8)
+  console.log('no pair adds to 8:', hasPairWithSum([1, 2, 3, 9], 8)); // returns false (no pair adds to 8)
+  console.log('4 + 4 = 8', hasPairWithSum([1, 2, 4, 4], 8)); // returns true (4 + 4 = 8)
